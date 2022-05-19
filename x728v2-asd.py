@@ -20,8 +20,7 @@ def readVoltage(bus):
      address = I2C_ADDR
      read = bus.read_word_data(address, 2)
      swapped = struct.unpack("<H", struct.pack(">H", read))[0]
-     voltage = swapped * 1.25 /1000/16
-     return voltage
+     return swapped * 1.25 /1000/16
 
 
 def readCapacity(bus):
@@ -29,8 +28,7 @@ def readCapacity(bus):
      address = I2C_ADDR
      read = bus.read_word_data(address, 4)
      swapped = struct.unpack("<H", struct.pack(">H", read))[0]
-     capacity = swapped/256
-     return capacity
+     return swapped/256
 
 
 bus = smbus.SMBus(1)
